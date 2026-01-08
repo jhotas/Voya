@@ -1,4 +1,3 @@
-"use client"
 import { PlaneTakeoff } from "lucide-react";
 import { Button } from "./ui/button";
 
