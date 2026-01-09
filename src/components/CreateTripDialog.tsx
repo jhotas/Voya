@@ -1,12 +1,44 @@
 "use client"
 
-import { Plus } from "lucide-react"
+import { useState } from "react"
+import { useAuth } from "@clerk/nextjs"
+import { supabase } from "@/lib/supabase"
+
+import { Plus, Loader2 } from "lucide-react"
 import { Button } from "./ui/button"
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "./ui/dialog"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter, DialogHeader,
+    DialogTitle,
+    DialogTrigger
+} from "./ui/dialog"
 import { Label } from "./ui/label"
 import { Input } from "./ui/input"
 
 export function CreateTripDialog() {
+    const { userId } = useAuth()
+    const [name, setName] = useState("")
+    const [destination, setDestination] = useState("")
+
+    async function handleCreateTrip() {
+        if (!name || !destination || !userId) return
+
+        const { error } = await supabase.from('trips').insert({
+            name,
+            destination,
+            user_id: userId
+        })
+
+        if (error) {
+            console.error("Erro ao criar viagem: ", error.message) 
+        } else {
+            alert("Viagem criada com sucesso!")
+            window.location.reload()
+        }
+    }
+
     return (
         <Dialog>
             <DialogTrigger asChild>
