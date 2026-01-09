@@ -1,5 +1,7 @@
 import { PlaneTakeoff } from "lucide-react";
 import { Button } from "./ui/button";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
 
 export function Navbar() {
     return (
@@ -11,8 +13,15 @@ export function Navbar() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <Button variant="ghost">Entrar</Button>
-                    <Button>Começar Agora</Button>
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <Button variant="ghost">Entrar</Button>
+                        </SignInButton>
+                    </SignedOut>
+
+                    <SignedIn>
+                        <UserButton />
+                    </SignedIn>
                 </div>
             </div>
         </nav>

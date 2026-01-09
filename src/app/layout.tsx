@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import "./globals.css";
 
 const inter = Inter({
-  variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -19,13 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      <body
-        className={`${inter.variable} antialiased bg-slate-50 text-zinc-900`}
-      >
-          <Navbar />
-          {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="pt-br">
+        <body
+          className={`${inter.className} antialiased bg-slate-50 text-zinc-900`}
+        >
+            <Navbar />
+            {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
