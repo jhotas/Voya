@@ -7,12 +7,12 @@ export function TripCard() {
 
             <div className="mt-4 space-y-2">
                 <div className="flex items-center gap-2 text-zinc-600 text-sm">
-                    <MapPin size={16} className="text-blue-500" />
+                    <MapPin size={16} className="text-lime-950" />
                     <span>Porto Seguro, Brasil</span>
                 </div>
 
                 <div className="flex items-center gap-2 text-zinc-600 text-sm">
-                    <Calendar size={16} className="text-blue-500" />
+                    <Calendar size={16} className="text-lime-950" />
                     <span>15 - 22 de Dezembro</span>
                 </div>
             </div>

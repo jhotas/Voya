@@ -42,7 +42,7 @@ export function CreateTripDialog() {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className="gap-2 bg-blue-600 hover:bg-blue-700">
+                <Button className="gap-2 bg-lime-300 hover:bg-lime-950 text-slate-400">
                     <Plus size={18} /> Nova Viagem
                 </Button>
             </DialogTrigger>
