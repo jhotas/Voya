@@ -41,7 +41,7 @@ export function TripCard({ id, name, destination }: TripCardProps) {
     }
 
     return (
-        <div className="relative border border-zinc-200 rounded-xl p-5 shadow-sm bg-white hover:shadow-md transition-all">
+        <div className="relative border border-zinc-500 rounded-xl p-5 shadow-sm bg-zinc-700 hover:shadow-md transition-all">
 
             <button 
                 onClick={handleDelete}
@@ -55,16 +55,16 @@ export function TripCard({ id, name, destination }: TripCardProps) {
                 )}
             </button>
 
-            <h3 className="font-bold text-lg text-zinc-900 pr-8">{name}</h3>
+            <h3 className="font-bold text-lg text-lime-300 pr-8">{name}</h3>
             
             <div className="mt-4 space-y-2">
-                <div className="flex items-center gap-2 text-zinc-600 text-sm">
-                    <MapPin size={16} className="text-blue-500" />
+                <div className="flex items-center gap-2 text-zinc-400 text-sm">
+                    <MapPin size={16} className="text-lime-300" />
                     <span>{destination}</span>
                 </div>
                 
-                <div className="flex items-center gap-2 text-zinc-600 text-sm">
-                    <Calendar size={16} className="text-blue-500" />
+                <div className="flex items-center gap-2 text-zinc-400 text-sm">
+                    <Calendar size={16} className="text-lime-300" />
                     <span>Data a definir</span>
                 </div>
             </div>

@@ -15,7 +15,6 @@ import {
     DialogTitle,
     DialogTrigger
 } from "./ui/dialog"
-import { Label } from "./ui/label"
 import { Input } from "./ui/input"
 
 export function CreateTripDialog() {
@@ -53,34 +52,34 @@ export function CreateTripDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="gap-2 bg-blue-600 hover:bg-blue-700 text-white">
+                <Button className="gap-2 bg-lime-300 hover:bg-zinc-500 text-lime-950">
                     <Plus size={18} /> Nova Viagem
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="sm-w-max[425px]">
+            <DialogContent className="bg-zinc-700 sm-w-max[425px]">
                 <DialogHeader>
-                    <DialogTitle>Planejar nova viagem</DialogTitle>
-                    <DialogDescription>
-                        Insira os detalhes do destino para começar a planejar com seus amigos.
+                    <DialogTitle >Planejar nova viagem</DialogTitle>
+                    <DialogDescription className="text-zinc-400">
+                        Insira os detalhes do <span className="text-zinc-200">destino</span> para começar a planejar com seus amigos.
                     </DialogDescription>
                 </DialogHeader>
 
                 <div className="grid gap-4 py-4">
                     <div className="grid gap-2">
-                        <Label htmlFor="name">Nome da Viagem</Label>
                         <Input
                             id="name"
-                            placeholder="Ex: Eurotrip 2026"
+                            placeholder="Nome da viagem"
+                            className="bg-zinc-800 border-none"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </div>
                     <div className="grid gap-2">
-                        <Label htmlFor="destination">Destino</Label>
                         <Input
                             id="destination"
-                            placeholder="Ex: Paris, França"
+                            placeholder="Para onde vamos?"
+                            className="bg-zinc-800 border-none"
                             value={destination}
                             onChange={(e) => setDestination(e.target.value)}
                         />
@@ -91,7 +90,7 @@ export function CreateTripDialog() {
                     <Button
                         onClick={handleCreateTrip}
                         disabled={loading || !name || !destination}
-                        className="w-full"
+                        className="w-full disabled:bg-lime-950 bg-lime-300 enabled:text-lime-950 enabled:cursor-pointer"
                     >
                         {loading ? (
                             <>
