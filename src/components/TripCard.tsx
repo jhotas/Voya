@@ -55,7 +55,7 @@ export function TripCard({ id, name, destination }: TripCardProps) {
                 )}
             </button>
 
-            <h3 className="font-bold text-lg text-lime-300 pr-8">{name}</h3>
+            <h3 className="font-bold text-lg text-white pr-8">{name}</h3>
             
             <div className="mt-4 space-y-2">
                 <div className="flex items-center gap-2 text-zinc-400 text-sm">
