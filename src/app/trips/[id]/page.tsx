@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase"
 import { MapPin, Calendar, Settings2, Plus, CircleCheck, Link2, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { CreateActivityDialog } from "@/components/CreateActivityDialog"
 
 export default async function TripDetails({ params }: { params: { id: string } }) {
     const { id } = await params
@@ -44,10 +45,7 @@ export default async function TripDetails({ params }: { params: { id: string } }
                 <div className="flex-1 space-y-6">
                     <div className="flex items-center justify-between">
                         <h2 className="text-3xl font-semibold text-white">Atividades</h2>
-                        <Button className="gap-2 bg-lime-300 hover:bg-lime-200 text-lime-950">
-                            <Plus size={20} />
-                            Cadastrar atividade
-                        </Button>
+                        <CreateActivityDialog tripId={id} />
                     </div>
 
                     <div className="space-y-8">
