@@ -2,7 +2,6 @@ import { PlaneTakeoff } from "lucide-react";
 import { Button } from "./ui/button";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
-
 export function Navbar() {
     return (
         <nav className="bg-zinc-700">
