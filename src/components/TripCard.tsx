@@ -4,18 +4,21 @@ import { Calendar, MapPin, Trash2, Loader2 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 interface TripCardProps {
     id: string
     name: string
     destination: string
+    starts_at?: string
 }
 
-export function TripCard({ id, name, destination }: TripCardProps) {
+export function TripCard({ id, name, destination, starts_at }: TripCardProps) {
     const [isDeleting, setIsDeleting] = useState(false)
     const router = useRouter()
 
     async function handleDelete(e: React.MouseEvent) {
+        e.preventDefault()
         e.stopPropagation()
 
         if (!confirm("Deseja excluir esta viagem?")) return
@@ -41,8 +44,10 @@ export function TripCard({ id, name, destination }: TripCardProps) {
     }
 
     return (
-        <div className="relative border border-zinc-500 rounded-xl p-5 shadow-sm bg-zinc-700 hover:shadow-md transition-all">
-
+        <Link
+            href={`/trips/${id}`}
+            className="relative border border-zinc-500 rounded-xl p-5 shadow-sm bg-zinc-700 hover:shadow-md transition-all"
+        >
             <button 
                 onClick={handleDelete}
                 disabled={isDeleting}
@@ -65,9 +70,13 @@ export function TripCard({ id, name, destination }: TripCardProps) {
                 
                 <div className="flex items-center gap-2 text-zinc-400 text-sm">
                     <Calendar size={16} className="text-lime-300" />
-                    <span>Data a definir</span>
+                    <span>
+                        {starts_at
+                            ? new Date(starts_at).toLocaleDateString('pt-BR')
+                            : "Data a definir"}
+                    </span>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
