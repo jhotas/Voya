@@ -2,6 +2,7 @@ import { supabase } from "@/lib/supabase"
 import { MapPin, Calendar, Settings2, Plus, CircleCheck, Link2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CreateActivityDialog } from "@/components/CreateActivityDialog"
+import { ActivityItem } from "@/components/ActivityItem"
 import { format, parseISO } from "date-fns"
 import { ptBR } from "date-fns/locale"
 
@@ -80,13 +81,15 @@ export default async function TripDetails({ params }: { params: { id: string } }
                                         </div>
 
                                         {dayActivities?.map(activity => (
-                                            <div key={activity.id} className="px-4 py-3 bg-zinc-900 hover:bg-zinc-700 hover:-translate-x-1 transition border border-zinc-800 rounded-xl shadow-sm flex items-center gap-3">
-                                                <CircleCheck className="text-lime-300" size={20} />
-                                                <span className="text-zinc-100">{activity.title}</span>
-                                                <span className="ml-auto text-zinc-400 text-sm">
-                                                    {format(parseISO(activity.occurs_at), 'HH:mm')}h
-                                                </span>
-                                            </div>
+                                            <ActivityItem 
+                                                key={activity.id}
+                                                activity={{
+                                                    id: activity.id,
+                                                    title: activity.title,
+                                                    occurs_at: activity.occurs_at,
+                                                    is_completed: activity.is_completed
+                                                }}
+                                            />
                                         ))}
                                     </div>
                                 )
