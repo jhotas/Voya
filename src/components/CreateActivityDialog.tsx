@@ -35,7 +35,8 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
         const { error } = await supabase.from('activities').insert({
             title,
             occurs_at: occursAt,
-            trip_id: tripId
+            trip_id: tripId,
+            is_completed: false
         })
 
         setLoading(false)
