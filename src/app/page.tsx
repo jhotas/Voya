@@ -45,6 +45,7 @@ export default async function Home() {
                         id={trip.id}
                         name={trip.name}
                         destination={trip.destination}
+                        starts_at={trip.starts_at}
                     />
                 ))}
             </div>
