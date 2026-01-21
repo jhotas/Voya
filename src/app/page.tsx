@@ -25,7 +25,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-zinc-800 p-8">
+    <main className="min-h-screen bg-zinc-900 p-8">
       <div className="max-w-5xl mx-auto">
         
         <header className="mb-10 flex justify-between items-center">
