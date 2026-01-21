@@ -1,7 +1,9 @@
 import { supabase } from "@/lib/supabase"
-import { MapPin, Calendar, Settings2, Plus, CircleCheck, Link2, User } from "lucide-react"
+import { MapPin, Calendar, Settings2, Plus, CircleCheck, Link2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { CreateActivityDialog } from "@/components/CreateActivityDialog"
+import { format, parseISO } from "date-fns"
+import { ptBR } from "date-fns/locale"
 
 export default async function TripDetails({ params }: { params: { id: string } }) {
     const { id } = await params
@@ -15,6 +17,18 @@ export default async function TripDetails({ params }: { params: { id: string } }
         .order('occurs_at', { ascending: true })
 
     if (!trip) return <div className="p-8">Viagem não encontrada.</div>
+
+    const groupedActivities: Record<string, typeof activities> = {}
+
+    activities?.forEach(activity => {
+        const dateKey = format(parseISO(activity.occurs_at), 'yyyy-MM-dd')
+        if (!groupedActivities[dateKey]) {
+            groupedActivities[dateKey] = []
+        }
+        groupedActivities[dateKey]?.push(activity)
+    })
+
+    const sortedDates = Object.keys(groupedActivities).sort()
 
     return (
         <div className="max-w-6xl mx-auto px-6 py-10 space-y-8">
@@ -49,30 +63,38 @@ export default async function TripDetails({ params }: { params: { id: string } }
                     </div>
 
                     <div className="space-y-8">
-                        {/* Exemplo de agrupamento por dia */}
-                        {activities && activities.length > 0 ? (
-                            activities.map((activity) => {
-                                const date = new Date(activity.occurs_at)
-                                const day = date.getDate()
-                                const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                                
+                        {sortedDates.length > 0 ? (
+                            sortedDates.map((dateKey) => {
+                                const date = parseISO(dateKey)
+                                const dayActivities = groupedActivities[dateKey]
+
                                 return (
-                                    <div key={activity.id} className="space-y-3">
+                                    <div key={dateKey} className="space-y-3">
                                         <div className="flex gap-2 items-baseline">
-                                            <span className="text-xl text-zinc-400 font-semibold">Dia {day}</span>
+                                            <span className="text-xl text-zinc-400 font-semibold">
+                                                Dia {format(date, 'dd')}
+                                            </span>
+                                            <span className="text-xs text-zinc-500 capitalize">
+                                                {format(date, 'EEEE', { locale: ptBR })}
+                                            </span>
                                         </div>
-                                        
-                                        {/* Card de Atividade */}
-                                        <div className="px-4 py-3 bg-zinc-700 rounded-xl shadow-sm flex items-center gap-3">
-                                            <CircleCheck className="text-lime-300" size={20} />
-                                            <span className="text-white">{activity.title}</span>
-                                            <span className="ml-auto text-zinc-400 text-sm">{time}</span>
-                                        </div>
+
+                                        {dayActivities?.map(activity => (
+                                            <div key={activity.id} className="px-4 py-3 bg-zinc-900 hover:bg-zinc-700 hover:-translate-x-1 transition border border-zinc-800 rounded-xl shadow-sm flex items-center gap-3">
+                                                <CircleCheck className="text-lime-300" size={20} />
+                                                <span className="text-zinc-100">{activity.title}</span>
+                                                <span className="ml-auto text-zinc-400 text-sm">
+                                                    {format(parseISO(activity.occurs_at), 'HH:mm')}h
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
                                 )
                             })
-                        ): (
-                            <p className="text-zinc-500 text-sm">Nenhuma atividade cadastrada para esta viagem</p>
+                        ) : (
+                            <div className="text-center py-10 border-2 border-dashed border-zinc-800 rounded-xl">
+                                <p className="text-zinc-500 text-sm">Nenhuma atividade cadastrada.</p>
+                            </div>
                         )}
                     </div>
                 </div>
