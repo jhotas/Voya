@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 
 import { Plus, Loader2, Calendar, MapPin } from "lucide-react"
 import { Button } from "./ui/button"
+import { DatePicker } from "./ui/date-picker"
 import {
     Dialog,
     DialogContent,
@@ -24,8 +25,8 @@ export function CreateTripDialog() {
 
     const [name, setName] = useState("")
     const [destination, setDestination] = useState("")
-    const [startsAt, setStartsAt] = useState("")
-    const [endsAt, setEndsAt] = useState("")
+    const [startsAt, setStartsAt] = useState<Date | undefined>()
+    const [endsAt, setEndsAt] = useState<Date | undefined>()
     const [loading, setLoading] = useState(false)
     const [open, setOpen] = useState(false)
 
@@ -39,8 +40,8 @@ export function CreateTripDialog() {
         .insert({
             name,
             destination,
-            starts_at: startsAt,
-            ends_at: endsAt,
+            starts_at: startsAt?.toISOString(),
+            ends_at: endsAt?.toISOString(),
             user_id: userId
         })
         .select('id')
@@ -63,8 +64,6 @@ export function CreateTripDialog() {
 
         setName("")
         setDestination("")
-        setStartsAt("")
-        setEndsAt("")
         setOpen(false)
         router.push(`/trips/${data.id}`)
         router.refresh()
@@ -78,7 +77,7 @@ export function CreateTripDialog() {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="bg-zinc-900 border-zinc-800 sm:max-w-106.25 text-zinc-100">
+            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 sm:max-w-106.25">
                 <DialogHeader>
                     <DialogTitle>Planejar nova viagem</DialogTitle>
                     <DialogDescription className="text-zinc-400">
@@ -103,7 +102,7 @@ export function CreateTripDialog() {
                             <Input
                                 id="destination"
                                 placeholder="Para onde vamos?"
-                                className="bg-zinc-800 border-none pl-10 focus-visible:ring-lime-300"
+                                className="bg-zinc-800 border-none pl-10 scheme-dark focus-visible:ring-lime-300"
                                 value={destination}
                                 onChange={(e) => setDestination(e.target.value)}
                             />
@@ -113,22 +112,18 @@ export function CreateTripDialog() {
                     <div className="grid grid-cols-2 gap-4">
                         <div className="grid gap-2">
                             <label htmlFor="startsAt" className="text-xs text-zinc-400 ml-1">Início</label>
-                            <Input
-                                id="startsAt"
-                                type="date"
-                                className="bg-zinc-800 border-none scheme-dark focus-visible:ring-lime-300"
-                                value={startsAt}
-                                onChange={(e) => setStartsAt(e.target.value)}
+                            <DatePicker
+                                date={startsAt}
+                                setDate={setStartsAt}
+                                placeholder="Data de início"
                             />
                         </div>
                         <div className="grid gap-2">
                             <label htmlFor="endsAt" className="text-xs text-zinc-400 ml-1">Fim</label>
-                            <Input
-                                id="endsAt"
-                                type="date"
-                                className="bg-zinc-800 border-none scheme-dark focus-visible:ring-lime-300"
-                                value={endsAt}
-                                onChange={(e) => setEndsAt(e.target.value)}
+                            <DatePicker
+                                date={endsAt}
+                                setDate={setEndsAt}
+                                placeholder="Data de fim"
                             />
                         </div>
                     </div>
