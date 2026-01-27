@@ -5,6 +5,8 @@ import { CreateActivityDialog } from "@/components/CreateActivityDialog"
 import { ActivityItem } from "@/components/ActivityItem"
 import { format, parseISO } from "date-fns"
 import { ptBR } from "date-fns/locale"
+import { LinkItem } from "@/components/LinkItem"
+import { CreateLinkDialog } from "@/components/CreateLinkDialog"
 
 export default async function TripDetails({ params }: { params: { id: string } }) {
     const { id } = await params
@@ -30,6 +32,11 @@ export default async function TripDetails({ params }: { params: { id: string } }
     })
 
     const sortedDates = Object.keys(groupedActivities).sort()
+
+    const { data: links } = await supabase
+        .from('links')
+        .select('*')
+        .eq('trip_id', id)
 
     return (
         <div className="max-w-6xl mx-auto px-6 py-10 space-y-8">
@@ -107,21 +114,17 @@ export default async function TripDetails({ params }: { params: { id: string } }
                     {/* Links Importantes */}
                     <div className="space-y-6">
                         <h2 className="font-semibold text-xl text-white">Links importantes</h2>
+                        
                         <div className="space-y-5">
-                            <div className="flex items-center justify-between gap-4">
-                                <div className="space-y-1.5">
-                                    <span className="block font-medium text-white text-sm">Reserva do AirBnB</span>
-                                    <a href="#" className="block text-xs text-zinc-400 truncate hover:text-zinc-600">
-                                        https://www.airbnb.com.br/rooms/104700011...
-                                    </a>
-                                </div>
-                                <Link2 className="text-zinc-400 shrink-0" size={20} />
-                            </div>
+                            {links && links.length > 0 ? (
+                                links.map(link => (
+                                    <LinkItem key={link.id} link={link} />
+                                ))
+                            ) : (
+                                <p className="text-zinc-500 text-sm">Nenhum link cadastrado.</p>
+                            )}
                         </div>
-                        <Button variant="secondary" className="w-full gap-2 bg-zinc-500 hover:bg-zinc-600 cursor-pointer">
-                            <Plus size={20} />
-                            Cadastrar novo link
-                        </Button>
+                        <CreateLinkDialog tripId={id} />
                     </div>
 
                     <div className="w-full h-px bg-zinc-200" />

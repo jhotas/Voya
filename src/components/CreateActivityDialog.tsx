@@ -1,5 +1,4 @@
 "use client"
-
 import { useState } from "react"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
@@ -48,7 +47,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
         setLoading(false)
 
         if (error) {
-            console.error("Erro ao criar atividade:", error.message)
+            console.error("Erro ao criar atividade: ", error.message)
             alert("Erro ao salvar atividade.")
         } else {
             setTitle("")
