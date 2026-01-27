@@ -69,7 +69,11 @@ export function LinkItem({ link }: LinkItemProps) {
                         </ContextMenuGroup>
                         <ContextMenuSeparator />
                         <ContextMenuGroup>
-                        <ContextMenuItem className="gap-2 cursor-pointer text-red-400 focus:bg-red-500/10 focus:text-red-400" onSelect={handleDelete}>
+                        <ContextMenuItem 
+                            className="gap-2 cursor-pointer text-red-400 focus:bg-red-500/10 focus:text-red-400"
+                            disabled={loading}
+                            onSelect={handleDelete}
+                        >
                             <TrashIcon size={16} />
                             Delete
                         </ContextMenuItem>
