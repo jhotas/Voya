@@ -115,7 +115,7 @@ export default async function TripDetails({ params }: { params: { id: string } }
                     <div className="space-y-6">
                         <h2 className="font-semibold text-xl text-white">Links importantes</h2>
                         
-                        <div className="space-y-5">
+                        <div className="space-y-2">
                             {links && links.length > 0 ? (
                                 links.map(link => (
                                     <LinkItem key={link.id} link={link} />
