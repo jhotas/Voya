@@ -64,7 +64,7 @@ export function ActivityItem({ activity }: ActivityItemProps) {
     return (
         <ContextMenu>
             <ContextMenuTrigger>
-                <div className={`cursor-pointer px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl shadow-sm flex items-center gap-3  transition-all hover:bg-zinc-800 ${isDone ? 'opacity-60' : 'opacity-100 hover:-translate-x-1'}`} onClick={toggleComplete}>
+                <div className={`cursor-pointer px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl shadow-sm flex items-center gap-3  transition-all hover:bg-zinc-800 ${isDone ? 'opacity-60' : 'opacity-100 hover:-translate-x-1'}`} onClick={() => !loading && toggleComplete}>
                     <button
                         disabled={loading}
                         className="hover:scale-110 transition-transform"
