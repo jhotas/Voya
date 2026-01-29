@@ -60,11 +60,11 @@ export function LinkItem({ link }: LinkItemProps) {
                         <ContextMenuGroup>
                         <ContextMenuItem className="gap-2 cursor-pointer focus:bg-zinc-800 focus:text-zinc-100">
                             <PencilIcon size={16} />
-                            Edit
+                            Editar
                         </ContextMenuItem>
                         <ContextMenuItem className="gap-2 cursor-pointer focus:bg-zinc-800 focus:text-zinc-100">
                             <ShareIcon size={16} />
-                            Share
+                            Partilhar
                         </ContextMenuItem>
                         </ContextMenuGroup>
                         <ContextMenuSeparator />
@@ -75,7 +75,7 @@ export function LinkItem({ link }: LinkItemProps) {
                             onSelect={handleDelete}
                         >
                             <TrashIcon size={16} />
-                            Delete
+                            Deletar
                         </ContextMenuItem>
                         </ContextMenuGroup>
                     </ContextMenuContent>
