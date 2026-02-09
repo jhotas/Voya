@@ -110,7 +110,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
                     <Button
                         onClick={handleCreateActivity}
                         disabled={loading || !title || !date || !time}
-                        className="w-full disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-300 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold transition-all"
+                        className="w-full disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-600 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold transition-all"
                     >
                         {loading ? (
                             <>
