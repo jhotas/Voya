@@ -1,11 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { useAuth } from "@clerk/nextjs"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
-
-import { Plus, Loader2, Calendar, MapPin } from "lucide-react"
+import { Plus, Loader2, MapPin } from "lucide-react"
 import { Button } from "./ui/button"
 import { DatePicker } from "./ui/date-picker"
 import {
@@ -19,8 +17,11 @@ import {
 } from "./ui/dialog"
 import { Input } from "./ui/input"
 
-export function CreateTripDialog() {
-    const { userId } = useAuth()
+interface CreateTripDialogProps {
+    userId: string | undefined
+}
+
+export function CreateTripDialog({ userId }: CreateTripDialogProps) {
     const router = useRouter()
 
     const [name, setName] = useState("")
@@ -36,18 +37,16 @@ export function CreateTripDialog() {
         setLoading(true)
 
         const { data, error } = await supabase
-        .from('trips')
-        .insert({
-            name,
-            destination,
-            starts_at: startsAt?.toISOString(),
-            ends_at: endsAt?.toISOString(),
-            user_id: userId
-        })
-        .select('id')
-        .single()
-
-        setLoading(false)
+            .from('trips')
+            .insert({
+                name,
+                destination,
+                starts_at: startsAt.toISOString(),
+                ends_at: endsAt.toISOString(),
+                user_id: userId
+            })
+            .select('id')
+            .single()
 
         if (error) {
             setLoading(false)
@@ -55,18 +54,14 @@ export function CreateTripDialog() {
             return
         }
 
-
-        if (!data) {
+        if (data) {
+            setName("")
+            setDestination("")
+            setOpen(false)
             setLoading(false)
-            console.error("Nenhum dado foi retornado do banco.")
-            return
+            router.push(`/trips/${data.id}`)
+            router.refresh()
         }
-
-        setName("")
-        setDestination("")
-        setOpen(false)
-        router.push(`/trips/${data.id}`)
-        router.refresh()
     }
 
     return (
