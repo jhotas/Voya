@@ -1,15 +1,25 @@
 import { TripCard } from "@/components/TripCard"
 import { CreateTripDialog } from "@/components/CreateTripDialog"
 import { supabase } from "@/lib/supabase"
-import { auth } from "@clerk/nextjs/server"
+import { auth, signIn } from "@/auth"
 
 export default async function Home() {
-  const { userId } = await auth()
+  const session = await auth()
 
-  if (!userId) {
+  if (!session?.user) {
     return (
-      <main className="min-h-screen p-8 flex items-center justify-center">
-        <p className="text-zinc-500">Faça login para gerenciar suas viagens.</p>
+      <main className="min-h-screen p-8 flex flex-col items-center justify-center bg-zinc-900">
+        <p className="text-zinc-500 mb-4">Faça login para gerenciar suas viagens.</p>
+        <form
+          action={async () => {
+            "use server"
+            await signIn("google")
+          }}
+        >
+          <button className="bg-lime-300 text-lime-950 px-5 py-2 rounded-lg font-medium hover:bg-lime-400 transition-colors">
+            Entrar com Google
+          </button>
+        </form>
       </main>
     )
   }
@@ -17,7 +27,7 @@ export default async function Home() {
   const { data: trips, error } = await supabase
     .from('trips')
     .select('*')
-    .eq('user_id', userId)
+    .eq('user_id', session.user.id)
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -34,7 +44,7 @@ export default async function Home() {
             <p className="text-zinc-400">Organize seus próximos destinos com seus amigos.</p>
           </div>
 
-          <CreateTripDialog />
+          <CreateTripDialog userId={session.user.id} />
         </header>
 
         {trips && trips.length > 0 ? (
@@ -50,7 +60,7 @@ export default async function Home() {
                 ))}
             </div>
         ) : (
-            <div className="text-center py-20 border-2 border-dashed rounded-xl">
+            <div className="text-center py-20 border-2 border-zinc-800 border-dashed rounded-xl">
                 <p className="text-zinc-500">Nenhuma viagem encontrada. Que tal planejar a primeira?</p>
             </div>
         )}
