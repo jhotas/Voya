@@ -85,7 +85,7 @@ export function ActivityItem({ activity }: ActivityItemProps) {
                             {activity.title}
                         </span>
 
-                        <span className="ml-auto text-zinc-400 text-sm">
+                        <span className="ml-auto text-zinc-400 text-sm" suppressHydrationWarning>
                             {format(parseISO(activity.occurs_at), 'HH:mm')}h
                         </span>
                     </div>
