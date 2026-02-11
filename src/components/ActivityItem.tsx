@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { CircleCheck, Circle, Loader2, PencilIcon, ShareIcon, TrashIcon } from "lucide-react"
 import { format, parseISO } from "date-fns"
@@ -28,6 +28,13 @@ export function ActivityItem({ activity }: ActivityItemProps) {
     const router = useRouter()
     const [isDone, setIsDone] = useState(activity.is_completed)
     const [loading, setLoading] = useState(false)
+    const [isClient, setIsClient] = useState(false)
+
+    useEffect(() => {
+        setIsClient(true)
+    }, [])
+
+    if (!isClient) return null
 
     async function toggleComplete() {
         setLoading(true)
