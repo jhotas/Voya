@@ -26,9 +26,7 @@ interface ActivityItemProps {
 
 export function ActivityItem({ activity }: ActivityItemProps) {
     const router = useRouter()
-    const [isDone, setIsDone] = useState(activity.is_completed)
-    const [loading, setLoading] = useState(false)
-    const [isClient, setIsClient] = useState(false)
+
 
     useEffect(() => {
         setIsClient(true)
