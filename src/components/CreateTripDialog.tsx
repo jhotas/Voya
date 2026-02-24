@@ -22,6 +22,7 @@ interface CreateTripDialogProps {
 }
 
 export function CreateTripDialog({ userId }: CreateTripDialogProps) {
+    console.log("ID do usuário recebido: ", userId)
     const router = useRouter()
 
     const [name, setName] = useState("")
