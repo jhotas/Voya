@@ -41,28 +41,28 @@ export default async function TripDetails({ params }: { params: { id: string } }
     return (
         <div className="max-w-6xl mx-auto px-6 py-10 space-y-8">
             {/* Cabeçalho superior (Barra horizontal) */}
-            <header className="px-8 h-16 rounded-xl bg-zinc-700 border border-zinc-500 shadow-sm flex items-center justify-between">
+            <header className="px-4 sm:px-8 py-4 sm:h-16 rounded-xl bg-zinc-800/50 border border-zinc-700/50 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                    <MapPin className="text-white" size={20} />
-                    <span className="text-white">{trip.destination}</span>
+                    <MapPin className="text-lime-300" size={20} />
+                    <span className="text-white font-medium">{trip.destination}</span>
                 </div>
 
-                <div className="flex items-center gap-5">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 w-full sm:w-auto">
                     <div className="flex items-center gap-2">
-                        <Calendar className="text-white" size={20} />
-                        <span className="text-white">
+                        <Calendar className="text-lime-300" size={20} />
+                        <span className="text-zinc-200">
                             {trip.starts_at ? new Date(trip.starts_at).toLocaleDateString() : "Data a definir"}
                         </span>
                     </div>
-                    <div className="w-px h-6 bg-zinc-200" />
-                    <Button variant="secondary" className="gap-2 bg-zinc-500 hover:bg-zinc-600 cursor-pointer">
+                    <div className="hidden sm:block w-px h-6 bg-zinc-700" />
+                    <Button variant="secondary" className="w-full sm:w-auto gap-2 bg-zinc-700 hover:bg-zinc-600 cursor-pointer border border-zinc-600">
                         Alterar local/data
-                        <Settings2 size={20} />
+                        <Settings2 size={18} />
                     </Button>
                 </div>
             </header>
 
-            <main className="flex gap-16 px-4">
+            <main className="flex flex-col lg:flex-row gap-12 lg:gap-16">
                 {/* Coluna da Esquerda: Atividades/Timeline */}
                 <div className="flex-1 space-y-6">
                     <div className="flex items-center justify-between">
@@ -110,7 +110,7 @@ export default async function TripDetails({ params }: { params: { id: string } }
                 </div>
 
                 {/* Coluna da Direita: Sidebar */}
-                <aside className="w-80 space-y-6">
+                <aside className="w-full lg:w-80 space-y-6">
                     {/* Links Importantes */}
                     <div className="space-y-6">
                         <h2 className="font-semibold text-xl text-white">Links importantes</h2>
@@ -127,7 +127,7 @@ export default async function TripDetails({ params }: { params: { id: string } }
                         <CreateLinkDialog tripId={id} />
                     </div>
 
-                    <div className="w-full h-px bg-zinc-200" />
+                    <div className="w-full h-px bg-zinc-800" />
 
                     {/* Convidados */}
                     <div className="space-y-6">
@@ -138,11 +138,11 @@ export default async function TripDetails({ params }: { params: { id: string } }
                                     <span className="block font-medium text-white text-sm">Jessica White</span>
                                     <span className="block text-xs text-zinc-400 truncate">jessica.white44@yahoo.com</span>
                                 </div>
-                                <CircleCheck className="text-zinc-400 shrink-0" size={20} />
+                                <CircleCheck className="text-lime-300 shrink-0" size={20} />
                             </div>
                         </div>
-                        <Button variant="secondary" className="w-full gap-2 bg-zinc-500 hover:bg-zinc-600 cursor-pointer">
-                            <Settings2 size={20} />
+                        <Button variant="secondary" className="w-full gap-2 bg-zinc-800 hover:bg-zinc-700 cursor-pointer border border-zinc-700">
+                            <Settings2 size={18} />
                             Gerenciar convidados
                         </Button>
                     </div>
