@@ -73,20 +73,20 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 sm:max-w-106.25">
+            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 w-[95vw] sm:max-w-[480px] p-6">
                 <DialogHeader>
-                    <DialogTitle>Planejar nova viagem</DialogTitle>
+                    <DialogTitle className="text-2xl font-bold text-white">Planejar nova viagem</DialogTitle>
                     <DialogDescription className="text-zinc-400">
                         Insira os detalhes do <span className="text-zinc-200">destino</span> e as <span className="text-zinc-200">datas</span> para começar.
                     </DialogDescription>
                 </DialogHeader>
 
-                <div className="grid gap-4 py-4">
+                <div className="grid gap-4 py-6">
                     <div className="grid gap-2">
                         <Input
                             id="name"
                             placeholder="Nome da viagem (ex: Férias de Verão)"
-                            className="bg-zinc-800 border-none focus-visible:ring-lime-300"
+                            className="bg-zinc-800 border-none h-12 focus-visible:ring-lime-300 transition-all"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -98,16 +98,16 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                             <Input
                                 id="destination"
                                 placeholder="Para onde vamos?"
-                                className="bg-zinc-800 border-none pl-10 scheme-dark focus-visible:ring-lime-300"
+                                className="bg-zinc-800 border-none h-12 pl-10 scheme-dark focus-visible:ring-lime-300 transition-all"
                                 value={destination}
                                 onChange={(e) => setDestination(e.target.value)}
                             />
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="grid gap-2">
-                            <label htmlFor="startsAt" className="text-xs text-zinc-400 ml-1">Início</label>
+                            <label htmlFor="startsAt" className="text-xs text-zinc-500 ml-1 font-medium uppercase tracking-wider">Início</label>
                             <DatePicker
                                 date={startsAt}
                                 setDate={setStartsAt}
@@ -115,7 +115,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                             />
                         </div>
                         <div className="grid gap-2">
-                            <label htmlFor="endsAt" className="text-xs text-zinc-400 ml-1">Fim</label>
+                            <label htmlFor="endsAt" className="text-xs text-zinc-500 ml-1 font-medium uppercase tracking-wider">Fim</label>
                             <DatePicker
                                 date={endsAt}
                                 setDate={setEndsAt}
@@ -129,11 +129,11 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                     <Button
                         onClick={handleCreateTrip}
                         disabled={loading || !name || !destination || !startsAt || !endsAt}
-                        className="w-full disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-300 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold transition-all"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-300 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-lime-300/10"
                     >
                         {loading ? (
                             <>
-                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                                 Criando...
                             </>
                         ) : (

@@ -17,7 +17,7 @@ export async function Navbar() {
           </div>
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           {!session?.user ? (
             <form
               action={async () => {
@@ -25,28 +25,28 @@ export async function Navbar() {
                 await signIn("google");
               }}
             >
-              <Button variant="ghost" className="text-zinc-300 hover:text-white">
+              <Button variant="ghost" className="text-zinc-300 hover:text-lime-300 hover:bg-lime-300/10 h-9 px-3">
                 Entrar
               </Button>
             </form>
           ) : (
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="flex items-center gap-2 sm:gap-3 bg-zinc-900 px-2 sm:px-3 py-1 rounded-full border border-zinc-800">
                 {session.user.image ? (
                   <Image 
                     src={session.user.image} 
                     alt={session.user.name || "User"} 
-                    width={32} 
-                    height={32} 
+                    width={24} 
+                    height={24} 
                     className="rounded-full border border-zinc-700"
                   />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center">
-                    <User size={16} className="text-zinc-400" />
+                  <div className="w-6 h-6 rounded-full bg-zinc-800 flex items-center justify-center">
+                    <User size={12} className="text-zinc-400" />
                   </div>
                 )}
-                <span className="text-sm text-zinc-300 hidden sm:inline">
-                  {session.user.name}
+                <span className="text-xs sm:text-sm font-medium text-zinc-300 hidden xs:inline-block max-w-[80px] sm:max-w-none truncate">
+                  {session.user.name?.split(' ')[0]}
                 </span>
               </div>
 
@@ -56,8 +56,8 @@ export async function Navbar() {
                   await signOut();
                 }}
               >
-                <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-red-400">
-                  <LogOut size={18} />
+                <Button variant="ghost" size="icon" className="size-8 sm:size-9 text-zinc-400 hover:text-red-400 hover:bg-red-400/10 rounded-full">
+                  <LogOut size={16} />
                 </Button>
               </form>
             </div>
