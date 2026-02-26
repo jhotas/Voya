@@ -61,7 +61,7 @@ export function InviteGuestDialog({ tripId, tripDestination }: InviteGuestDialog
               alert(`Convite enviado com sucesso para ${email}!`);
             } else {
               console.error("Email error:", emailResult.error);
-              alert("Usuário adicionado, mas falhou ao enviar o e-mail real. Verifique se a RESEND_API_KEY está configurada.");
+              alert(`${emailResult.error}`);
             }
 
             setName("")
