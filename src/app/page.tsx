@@ -1,69 +1,81 @@
-import { TripCard } from "@/components/TripCard"
-import { CreateTripDialog } from "@/components/CreateTripDialog"
-import { supabase } from "@/lib/supabase"
 import { auth, signIn } from "@/auth"
+import { redirect } from "next/navigation"
+import { Globe2, Map, Users, ArrowRight, PlaneTakeoff } from "lucide-react"
 
 export default async function Home() {
   const session = await auth()
 
-  if (!session?.user) {
-    return (
-      <main className="min-h-screen p-8 flex flex-col items-center justify-center bg-zinc-900">
-        <p className="text-zinc-500 mb-4">Faça login para gerenciar suas viagens.</p>
+  if (session?.user) {
+    redirect("/trips")
+  }
+
+  return (
+    <main className="min-h-[calc(100vh-4rem)] bg-zinc-950 flex flex-col relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full overflow-hidden pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_center,#1a2e05,transparent_50%)] opacity-50" />
+
+      <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-12 relative z-10 text-center max-w-5xl mx-auto w-full">
+
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-lime-300 text-sm font-medium mb-8">
+          <Globe2 size={16} />
+          <span>Sua próxima aventura começa aqui</span>
+        </div>
+
+        <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6">
+          Planeje suas viagens <br className="hidden sm:block" />
+          <span className="text-lime-300">com quem você ama</span>
+        </h1>
+
+        <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+          Crie roteiros colaborativos, organize as atividades diárias, defina os destinos e 
+          compartilhe tudo em um só lugar. Viajar nunca foi tão fácil.
+        </p>
+
         <form
           action={async () => {
             "use server"
             await signIn("google")
           }}
+          className="w-full sm:w-auto"
         >
-          <button className="bg-lime-300 text-lime-950 px-5 py-2 rounded-lg font-medium hover:bg-lime-400 transition-colors">
-            Entrar com Google
+          <button className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-lime-300 text-lime-950 px-8 py-4 rounded-xl font-bold text-lg hover:bg-lime-400 transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(190,242,100,0.4)]">
+            Começar a planejar agora
+            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
         </form>
-      </main>
-    )
-  }
 
-  const { data: trips, error } = await supabase
-    .from('trips')
-    .select('*')
-    .eq('user_id', session.user.id)
-    .order('created_at', { ascending: false })
-
-  if (error) {
-    console.error("Erro ao carregar viagens:", error.message)
-  }
-
-  return (
-    <main className="min-h-screen bg-zinc-900 p-8">
-      <div className="max-w-5xl mx-auto">
-        
-        <header className="mb-10 flex justify-between items-center">
-          <div>
-            <h1 className="text-4xl font-bold text-lime-300 tracking-tight">Minhas Viagens</h1>
-            <p className="text-zinc-400">Organize seus próximos destinos com seus amigos.</p>
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl text-left border-t border-zinc-800/50 pt-16">
+          <div className="flex gap-4 items-start">
+            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+              <Map className="text-lime-300" size={24} />
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-2">Roteiros Inteligentes</h3>
+              <p className="text-zinc-400 text-sm">Monte o itinerário dia a dia e não perca nenhum ponto turístico importante.</p>
+            </div>
           </div>
 
-          <CreateTripDialog userId={session.user.id} />
-        </header>
+          <div className="flex gap-4 items-start">
+            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+              <Users className="text-lime-300" size={24} />
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-2">Colaborativo</h3>
+              <p className="text-zinc-400 text-sm">Convide seus amigos para planejarem juntos a viagem dos sonhos.</p>
+            </div>
+          </div>
 
-        {trips && trips.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {trips.map((trip) =>(
-                    <TripCard 
-                        key={trip.id}
-                        id={trip.id}
-                        name={trip.name}
-                        destination={trip.destination}
-                        starts_at={trip.starts_at}
-                    />
-                ))}
+          <div className="flex gap-4 items-start">
+            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
+              <PlaneTakeoff className="text-lime-300" size={24} />
             </div>
-        ) : (
-            <div className="text-center py-20 border-2 border-zinc-800 border-dashed rounded-xl">
-                <p className="text-zinc-500">Nenhuma viagem encontrada. Que tal planejar a primeira?</p>
+            <div>
+              <h3 className="text-white font-semibold mb-2">Qualquer Destino</h3>
+              <p className="text-zinc-400 text-sm">Do litoral paulista até a Europa, seu planejamento vai ser impecável.</p>
             </div>
-        )}
+          </div>
+        </div>
+
       </div>
     </main>
   )

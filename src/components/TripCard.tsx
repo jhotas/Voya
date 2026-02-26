@@ -61,13 +61,13 @@ export function TripCard({ id, name, destination, starts_at }: TripCardProps) {
             </button>
 
             <h3 className="font-bold text-lg text-white pr-8">{name}</h3>
-            
+
             <div className="mt-4 space-y-2">
                 <div className="flex items-center gap-2 text-zinc-400 text-sm">
                     <MapPin size={16} className="text-lime-300" />
                     <span>{destination}</span>
                 </div>
-                
+
                 <div className="flex items-center gap-2 text-zinc-400 text-sm">
                     <Calendar size={16} className="text-lime-300" />
                     <span>
