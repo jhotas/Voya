@@ -53,7 +53,7 @@ export function CreateLinkDialog({ tripId }: CreateLinkDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant={"secondary"} className="w-full gap-2 bg-zinc-500 hover:bg-zinc-600 cursor-pointer">
+                <Button variant={"secondary"} className="w-full gap-2 bg-zinc-800 hover:bg-zinc-700 cursor-pointer border border-zinc-700">
                     <Plus size={20} />
                     Cadastrar novo link
                 </Button>
@@ -71,7 +71,7 @@ export function CreateLinkDialog({ tripId }: CreateLinkDialogProps) {
                     <div className="grid gap-2">
                         <div className="relative">
                             <PencilLine className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
-                            <Input 
+                            <Input
                                 placeholder="Qual o nome do link?"
                                 className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-lime-300 transition-all"
                                 value={title}
@@ -83,7 +83,7 @@ export function CreateLinkDialog({ tripId }: CreateLinkDialogProps) {
                     <div className="grid gap-2">
                         <div className="relative">
                             <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
-                            <Input 
+                            <Input
                                 placeholder="Link"
                                 className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-lime-300 transition-all font-mono"
                                 value={link}

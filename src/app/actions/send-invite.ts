@@ -80,3 +80,56 @@ export async function sendInviteEmail({
     };
   }
 }
+
+interface SendRemovalEmailProps {
+  email: string;
+  name?: string;
+  tripDestination: string;
+}
+
+export async function sendRemovalEmail({
+  email,
+  name,
+  tripDestination
+}: SendRemovalEmailProps) {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    return { success: false, error: 'Configuração de e-mail ausente.' };
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    const mailOptions = {
+      from: `"Voya" <${process.env.EMAIL_USER}>`,
+      to: email,
+      subject: `Atualização sobre sua viagem para ${tripDestination}`,
+      html: `
+        <div style="font-family: sans-serif; line-height: 1.6; color: #111; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+          <h2 style="color: #000;">Olá, ${name || 'viajante'}!</h2>
+          <p>Estamos passando para informar que você foi removido da lista de participantes da viagem para <strong>${tripDestination}</strong>.</p>
+          <p>Caso isso tenha sido um erro, entre em contato com o organizador da viagem.</p>
+
+          <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+          <p style="font-size: 12px; color: #999; text-align: center;">Voya - Organizando seus melhores momentos.</p>
+        </div>
+      `
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    return { success: true, messageId: info.messageId };
+  } catch (error: any) {
+    console.error('Removal email error:', error);
+    return { success: false, error: error.message };
+  }
+}
