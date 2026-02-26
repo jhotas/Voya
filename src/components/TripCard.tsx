@@ -48,7 +48,7 @@ export function TripCard({ id, name, destination, starts_at }: TripCardProps) {
             href={`/trips/${id}`}
             className="relative border border-zinc-500 rounded-xl p-5 shadow-sm bg-zinc-700 hover:shadow-md transition-all"
         >
-            <button 
+            <button
                 onClick={handleDelete}
                 disabled={isDeleting}
                 className="absolute top-4 right-4 text-zinc-400 hover:text-red-500 transition-colors p-1 disabled:opacity-50"

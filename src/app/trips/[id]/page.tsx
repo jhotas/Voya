@@ -7,6 +7,7 @@ import { format, parseISO } from "date-fns"
 import { ptBR } from "date-fns/locale"
 import { LinkItem } from "@/components/LinkItem"
 import { CreateLinkDialog } from "@/components/CreateLinkDialog"
+import { Guests } from "@/components/Guests"
 
 export default async function TripDetails({ params }: { params: { id: string } }) {
     const { id } = await params
@@ -35,6 +36,11 @@ export default async function TripDetails({ params }: { params: { id: string } }
 
     const { data: links } = await supabase
         .from('links')
+        .select('*')
+        .eq('trip_id', id)
+
+    const { data: guests } = await supabase
+        .from('participants')
         .select('*')
         .eq('trip_id', id)
 
@@ -88,7 +94,7 @@ export default async function TripDetails({ params }: { params: { id: string } }
                                         </div>
 
                                         {dayActivities?.map(activity => (
-                                            <ActivityItem 
+                                            <ActivityItem
                                                 key={activity.id}
                                                 activity={{
                                                     id: activity.id,
@@ -114,10 +120,10 @@ export default async function TripDetails({ params }: { params: { id: string } }
                     {/* Links Importantes */}
                     <div className="space-y-6">
                         <h2 className="font-semibold text-xl text-white">Links importantes</h2>
-                        
+
                         <div className="space-y-2">
                             {links && links.length > 0 ? (
-                                links.map(link => (
+                                links.map((link: any) => (
                                     <LinkItem key={link.id} link={link} />
                                 ))
                             ) : (
@@ -129,23 +135,8 @@ export default async function TripDetails({ params }: { params: { id: string } }
 
                     <div className="w-full h-px bg-zinc-800" />
 
-                    {/* Convidados */}
-                    <div className="space-y-6">
-                        <h2 className="font-semibold text-xl text-white">Convidados</h2>
-                        <div className="space-y-5">
-                            <div className="flex items-center justify-between gap-4">
-                                <div className="space-y-1.5">
-                                    <span className="block font-medium text-white text-sm">Jessica White</span>
-                                    <span className="block text-xs text-zinc-400 truncate">jessica.white44@yahoo.com</span>
-                                </div>
-                                <CircleCheck className="text-lime-300 shrink-0" size={20} />
-                            </div>
-                        </div>
-                        <Button variant="secondary" className="w-full gap-2 bg-zinc-800 hover:bg-zinc-700 cursor-pointer border border-zinc-700">
-                            <Settings2 size={18} />
-                            Gerenciar convidados
-                        </Button>
-                    </div>
+                    {/* Convidados Component */}
+                    <Guests tripId={id} guests={guests || []} />
                 </aside>
             </main>
         </div>
