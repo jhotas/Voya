@@ -1,4 +1,4 @@
-import { PlaneTakeoff, LogOut, User } from "lucide-react";
+import { LogOut, User } from "lucide-react";
 import { Button } from "./ui/button";
 import { auth, signIn, signOut } from "@/auth";
 import Link from "next/link";
@@ -10,11 +10,15 @@ export async function Navbar() {
   return (
     <nav className="bg-zinc-950 border-b border-zinc-800">
       <div className="max-w-5xl mx-auto h-16 flex items-center justify-between px-4">
-        <Link href={'/'}>
-          <div className="flex items-center gap-2 font-bold text-xl text-lime-300">
-            <PlaneTakeoff />
-            <span>Voya</span>
-          </div>
+        <Link href={'/'} className="flex items-center">
+          <Image
+            src="/logo-voya.svg"
+            alt="Voya"
+            width={64}
+            height={64}
+            className="h-10 w-auto"
+            priority
+          />
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-4">
