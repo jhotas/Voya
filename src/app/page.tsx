@@ -12,11 +12,15 @@ export default async function Home() {
   return (
     <main className="min-h-[calc(100vh-4rem)] bg-zinc-950 flex flex-col relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 w-full -translate-x-1/2 h-full overflow-hidden pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_center,#1a2e05,transparent_50%)] opacity-50" />
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a_1px,transparent_1px),linear-gradient(to_bottom,#27272a_1px,transparent_1px)] bg-size-[4rem_4rem] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20" />
+        <div className="absolute -top-[15%] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-lime-500/10 blur-[140px] rounded-full" />
+        <div className="absolute top-[20%] -left-[10%] w-[400px] h-[400px] bg-lime-600/5 blur-[100px] rounded-full" />
+      </div>
 
       <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-12 relative z-10 text-center max-w-5xl mx-auto w-full">
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-lime-300 text-sm font-medium mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-950 border border-lime-800 text-lime-300 text-sm font-medium mb-8">
           <Globe2 size={16} />
           <span>Sua próxima aventura começa aqui</span>
         </div>
@@ -27,7 +31,7 @@ export default async function Home() {
         </h1>
 
         <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-          Crie roteiros colaborativos, organize as atividades diárias, defina os destinos e 
+          Crie roteiros colaborativos, organize as atividades diárias, defina os destinos e
           compartilhe tudo em um só lugar. Viajar nunca foi tão fácil.
         </p>
 
