@@ -1,7 +1,14 @@
 "use server"
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Configure the SMTP transporter
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,    // Your Gmail address
+    pass: process.env.EMAIL_PASSWORD // Your 16-character App Password
+  }
+});
 
 interface SendInviteEmailProps {
   email: string;
@@ -17,8 +24,8 @@ export async function sendInviteEmail({
   confirmationLink
 }: SendInviteEmailProps) {
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'Voya <onboarding@resend.dev>',
+    const mailOptions = {
+      from: `"Voya" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: `Convite para viajar para ${tripDestination}! ✈️`,
       html: `
@@ -37,15 +44,13 @@ export async function sendInviteEmail({
           <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
           <p style="font-size: 12px; color: #999; text-align: center;">Voya - Seu próximo destino começa aqui.</p>
         </div>
-      `,
-    });
+      `
+    };
 
-    if (error) {
-      console.error('Resend error:', error);
-      return { success: false, error: error.message };
-    }
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent: ' + info.response);
 
-    return { success: true, data };
+    return { success: true, data: info };
   } catch (error: any) {
     console.error('Server error sending email:', error);
     return { success: false, error: error.message };
