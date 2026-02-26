@@ -1,15 +1,6 @@
 "use server"
 import nodemailer from 'nodemailer';
 
-// Configure the SMTP transporter
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,    // Your Gmail address
-    pass: process.env.EMAIL_PASSWORD // Your 16-character App Password
-  }
-});
-
 interface SendInviteEmailProps {
   email: string;
   name?: string;
@@ -23,7 +14,30 @@ export async function sendInviteEmail({
   tripDestination,
   confirmationLink
 }: SendInviteEmailProps) {
+  // 1. Check for missing environment variables
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    console.error('SERVER ERROR: EMAIL_USER or EMAIL_PASSWORD is not set in environment variables.');
+    return {
+      success: false,
+      error: 'Serviço de e-mail não configurado no servidor. Verifique as variáveis de ambiente no Vercel.'
+    };
+  }
+
   try {
+    // 2. Configure the transporter inside the function for stability on Vercel
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+      },
+      tls: {
+        rejectUnauthorized: false // Helps with certificate issues in some hosting environments
+      }
+    });
+
     const mailOptions = {
       from: `"Voya" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -48,11 +62,21 @@ export async function sendInviteEmail({
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent: ' + info.response);
+    console.log('Email sent successfully:', info.messageId);
 
-    return { success: true, data: info };
+    // CRITICAL: Only return serializable data.
+    // Do not return the full 'info' object from nodemailer as it contains non-serializable data.
+    return {
+      success: true,
+      messageId: info.messageId
+    };
   } catch (error: any) {
-    console.error('Server error sending email:', error);
-    return { success: false, error: error.message };
+    // Log the full error to Vercel console
+    console.error('SMTP ERROR:', error);
+
+    return {
+      success: false,
+      error: `Falha no envio: ${error.message || 'Erro desconhecido'}`
+    };
   }
 }

@@ -42,9 +42,9 @@ export function InviteGuestDialog({ tripId, tripDestination }: InviteGuestDialog
 
         setLoading(false)
 
-        if (error) {
-            console.error("Erro ao convidar: ", error.message)
-            alert("Erro ao enviar convite.")
+        if (error || !data) {
+            console.error("Erro ao convidar: ", error?.message || "Sem dados retornados")
+            alert("Erro ao criar convite. Verifique sua conexão.")
         } else {
             // Generate confirmation link
             const confirmationLink = `${window.location.origin}/trips/confirm/${data.id}`
