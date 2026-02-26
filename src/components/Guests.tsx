@@ -11,10 +11,11 @@ interface Guest {
 
 interface GuestsProps {
   tripId: string;
+  tripDestination: string;
   guests: Guest[];
 }
 
-export function Guests({ tripId, guests }: GuestsProps) {
+export function Guests({ tripId, tripDestination, guests }: GuestsProps) {
   return (
     <div className="space-y-6">
       <h2 className="font-semibold text-xl text-white">Convidados</h2>
@@ -43,7 +44,7 @@ export function Guests({ tripId, guests }: GuestsProps) {
         )}
       </div>
 
-      <InviteGuestDialog tripId={tripId} />
+      <InviteGuestDialog tripId={tripId} tripDestination={tripDestination} />
     </div>
   );
 }

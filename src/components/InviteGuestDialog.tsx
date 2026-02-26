@@ -3,23 +3,25 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation";
 import { AtSign, Loader2, Plus, User } from "lucide-react";
-import { 
-    Dialog, 
-    DialogContent, 
-    DialogDescription, 
-    DialogFooter, 
-    DialogHeader, 
-    DialogTitle, 
-    DialogTrigger 
+import { sendInviteEmail } from "@/app/actions/send-invite"
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger
 } from "./ui/dialog"
 import { Input } from "./ui/input"
 import { Button } from "./ui/button";
 
 interface InviteGuestDialogProps {
-    tripId: string
+    tripId: string;
+    tripDestination: string;
 }
 
-export function InviteGuestDialog({ tripId }: InviteGuestDialogProps) {
+export function InviteGuestDialog({ tripId, tripDestination }: InviteGuestDialogProps) {
     const router = useRouter()
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
@@ -31,12 +33,12 @@ export function InviteGuestDialog({ tripId }: InviteGuestDialogProps) {
 
         setLoading(true)
 
-        const { error } = await supabase.from('participants').insert({
+        const { data, error } = await supabase.from('participants').insert({
             name,
             email,
             trip_id: tripId,
             is_confirmed: false
-        })
+        }).select('id').single()
 
         setLoading(false)
 
@@ -44,6 +46,24 @@ export function InviteGuestDialog({ tripId }: InviteGuestDialogProps) {
             console.error("Erro ao convidar: ", error.message)
             alert("Erro ao enviar convite.")
         } else {
+            // Generate confirmation link
+            const confirmationLink = `${window.location.origin}/trips/confirm/${data.id}`
+
+            // Send REAL email
+            const emailResult = await sendInviteEmail({
+              email,
+              name,
+              tripDestination,
+              confirmationLink
+            });
+
+            if (emailResult.success) {
+              alert(`Convite enviado com sucesso para ${email}!`);
+            } else {
+              console.error("Email error:", emailResult.error);
+              alert("Usuário adicionado, mas falhou ao enviar o e-mail real. Verifique se a RESEND_API_KEY está configurada.");
+            }
+
             setName("")
             setEmail("")
             setOpen(false)

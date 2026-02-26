@@ -136,7 +136,7 @@ export default async function TripDetails({ params }: { params: { id: string } }
                     <div className="w-full h-px bg-zinc-800" />
 
                     {/* Convidados Component */}
-                    <Guests tripId={id} guests={guests || []} />
+                    <Guests tripId={id} tripDestination={trip.destination} guests={guests || []} />
                 </aside>
             </main>
         </div>
