@@ -67,7 +67,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 w-[95vw] sm:max-w-[480px] p-6 focus:outline-none">
+            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 w-[95vw] sm:max-w-120 p-6 focus:outline-none">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-white">Cadastrar atividade</DialogTitle>
                     <DialogDescription className="text-zinc-400">
@@ -77,7 +77,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
 
                 <div className="grid gap-4 py-6">
                     <div className="grid gap-2">
-                        <div className="relative">
+                        <div className="relative">  
                             <Tag className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
                             <Input
                                 placeholder="Qual a atividade?"
