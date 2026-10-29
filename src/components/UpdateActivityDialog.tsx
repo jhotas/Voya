@@ -69,7 +69,7 @@ export function UpdateActivityDialog({ activity }: UpdateActivityDialogProps) {
                 <Button
                     onClick={handleUpdate}
                     disabled={loading}
-                    className="bg-main text-lime-950"
+                    className="bg-main text-secondary"
                 >
                     {loading ? <Loader2 className="animate-spin" /> : "Salvar alterações"}
                 </Button>

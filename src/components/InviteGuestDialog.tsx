@@ -119,7 +119,7 @@ export function InviteGuestDialog({ tripId, tripDestination }: InviteGuestDialog
                     <Button
                         onClick={handleInviteGuest}
                         disabled={loading || !email}
-                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-secondary hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
                     >
                         {loading ? (
                             <>

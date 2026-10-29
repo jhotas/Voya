@@ -61,7 +61,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="gap-2 bg-main hover:bg-lime-400 text-lime-950 font-medium cursor-pointer transition-colors">
+                <Button className="gap-2 bg-main hover:bg-lime-400 text-secondary font-medium cursor-pointer transition-colors">
                     <Plus size={20} />
                     Cadastrar atividade
                 </Button>
@@ -110,7 +110,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
                     <Button
                         onClick={handleCreateActivity}
                         disabled={loading || !title || !date || !time}
-                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-secondary hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
                     >
                         {loading ? (
                             <>

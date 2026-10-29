@@ -68,7 +68,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="gap-2 bg-main hover:bg-lime-400 text-lime-950 cursor-pointer transition-colors">
+                <Button className="gap-2 bg-main hover:bg-lime-400 text-secondary cursor-pointer transition-colors">
                     <Plus size={18} /> Nova Viagem
                 </Button>
             </DialogTrigger>
@@ -129,7 +129,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                     <Button
                         onClick={handleCreateTrip}
                         disabled={loading || !name || !destination || !startsAt || !endsAt}
-                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-secondary hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
                     >
                         {loading ? (
                             <>

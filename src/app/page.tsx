@@ -20,7 +20,7 @@ export default async function Home() {
 
       <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-12 relative z-10 text-center max-w-5xl mx-auto w-full">
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-950 border border-lime-800 text-main text-sm font-medium mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary border border-lime-800 text-main text-sm font-medium mb-8">
           <Globe2 size={16} />
           <span>Sua próxima aventura começa aqui</span>
         </div>
@@ -42,7 +42,7 @@ export default async function Home() {
           }}
           className="w-full sm:w-auto"
         >
-          <button className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-main text-lime-950 px-8 py-4 rounded-xl font-bold text-lg hover:bg-lime-400 transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(190,242,100,0.4)]">
+          <button className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-main text-secondary px-8 py-4 rounded-xl font-bold text-lg hover:bg-lime-400 transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(190,242,100,0.4)]">
             Começar a planejar agora
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>

@@ -47,7 +47,7 @@ export default async function ConfirmParticipant({ params }: { params: { id: str
             </p>
 
             <Link href={`/trips/${participant.trips.id}`}>
-                <Button className="bg-main text-lime-950 hover:bg-lime-400 h-14 px-8 rounded-2xl font-bold text-lg group shadow-lg shadow-main/10 transition-all hover:scale-105">
+                <Button className="bg-main text-secondary hover:bg-lime-400 h-14 px-8 rounded-2xl font-bold text-lg group shadow-lg shadow-main/10 transition-all hover:scale-105">
                     Ver detalhes da viagem
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
