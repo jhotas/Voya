@@ -59,7 +59,7 @@ export function CreateLinkDialog({ tripId }: CreateLinkDialogProps) {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 w-[95vw] sm:max-w-[480px] p-6 focus:outline-none">
+            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 w-[95vw] sm:max-w-120 p-6 focus:outline-none">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-white">Cadastrar link</DialogTitle>
                     <DialogDescription className="text-zinc-400">

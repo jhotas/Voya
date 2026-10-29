@@ -49,7 +49,7 @@ export async function Navbar() {
                     <User size={12} className="text-zinc-400" />
                   </div>
                 )}
-                <span className="text-xs sm:text-sm font-medium text-zinc-300 hidden xs:inline-block max-w-[80px] sm:max-w-none truncate">
+                <span className="text-xs sm:text-sm font-medium text-zinc-300 hidden xs:inline-block max-w-20 sm:max-w-none truncate">
                   {session.user.name?.split(' ')[0]}
                 </span>
               </div>

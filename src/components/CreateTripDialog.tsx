@@ -73,7 +73,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 w-[95vw] sm:max-w-[480px] p-6">
+            <DialogContent className="bg-zinc-900 border-zinc-800 text-zinc-100 w-[95vw] sm:max-w-120 p-6">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-bold text-white">Planejar nova viagem</DialogTitle>
                     <DialogDescription className="text-zinc-400">
