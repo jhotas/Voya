@@ -94,7 +94,7 @@ export function InviteGuestDialog({ tripId, tripDestination }: InviteGuestDialog
                             <User className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
                             <Input
                                 placeholder="Nome do convidado (opcional)"
-                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-lime-300 transition-all"
+                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-main transition-all"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
@@ -107,7 +107,7 @@ export function InviteGuestDialog({ tripId, tripDestination }: InviteGuestDialog
                             <Input
                                 type="email"
                                 placeholder="E-mail do convidado"
-                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-lime-300 transition-all font-mono"
+                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-main transition-all font-mono"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -119,7 +119,7 @@ export function InviteGuestDialog({ tripId, tripDestination }: InviteGuestDialog
                     <Button
                         onClick={handleInviteGuest}
                         disabled={loading || !email}
-                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-300 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-lime-300/10"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
                     >
                         {loading ? (
                             <>

@@ -64,12 +64,12 @@ export function TripCard({ id, name, destination, starts_at }: TripCardProps) {
 
             <div className="mt-4 space-y-2">
                 <div className="flex items-center gap-2 text-zinc-400 text-sm">
-                    <MapPin size={16} className="text-lime-300" />
+                    <MapPin size={16} className="text-main" />
                     <span>{destination}</span>
                 </div>
 
                 <div className="flex items-center gap-2 text-zinc-400 text-sm">
-                    <Calendar size={16} className="text-lime-300" />
+                    <Calendar size={16} className="text-main" />
                     <span>
                         {starts_at
                             ? new Date(starts_at).toLocaleDateString('pt-BR')

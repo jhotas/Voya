@@ -29,7 +29,7 @@ export async function Navbar() {
                 await signIn("google");
               }}
             >
-              <Button variant="ghost" className="text-zinc-300 hover:text-lime-300 hover:bg-lime-300/10 h-9 px-3">
+              <Button variant="ghost" className="text-zinc-300 hover:text-main hover:bg-main/10 h-9 px-3">
                 Entrar
               </Button>
             </form>

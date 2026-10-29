@@ -79,7 +79,7 @@ export function Guests({ tripId, tripDestination, guests }: GuestsProps) {
                     </span>
                   </div>
                   {guest.is_confirmed ? (
-                    <CircleCheck className="text-lime-300 shrink-0" size={20} />
+                    <CircleCheck className="text-main shrink-0" size={20} />
                   ) : (
                     <CircleDashed className="text-zinc-500 shrink-0" size={20} />
                   )}

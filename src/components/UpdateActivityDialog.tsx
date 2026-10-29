@@ -54,12 +54,12 @@ export function UpdateActivityDialog({ activity }: UpdateActivityDialogProps) {
 
             <div className="grid gap-4 py-4">
                 <Input
-                    className="bg-zinc-800 border-none pl-10 focus-visible:ring-lime-300"
+                    className="bg-zinc-800 border-none pl-10 focus-visible:ring-main"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                 />
                 <Input
-                    className="bg-zinc-800 border-none pl-10 focus-visible:ring-lime-300"
+                    className="bg-zinc-800 border-none pl-10 focus-visible:ring-main"
                     value={occursAt.substring(0, 16)}
                     onChange={(e) => setOccursAt(e.target.value)}
                 />
@@ -69,7 +69,7 @@ export function UpdateActivityDialog({ activity }: UpdateActivityDialogProps) {
                 <Button
                     onClick={handleUpdate}
                     disabled={loading}
-                    className="bg-lime-300 text-lime-950"
+                    className="bg-main text-lime-950"
                 >
                     {loading ? <Loader2 className="animate-spin" /> : "Salvar alterações"}
                 </Button>

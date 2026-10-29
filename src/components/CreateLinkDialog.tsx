@@ -73,7 +73,7 @@ export function CreateLinkDialog({ tripId }: CreateLinkDialogProps) {
                             <PencilLine className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
                             <Input
                                 placeholder="Qual o nome do link?"
-                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-lime-300 transition-all"
+                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-main transition-all"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
@@ -85,7 +85,7 @@ export function CreateLinkDialog({ tripId }: CreateLinkDialogProps) {
                             <Link2 className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
                             <Input
                                 placeholder="Link"
-                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-lime-300 transition-all font-mono"
+                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-main transition-all font-mono"
                                 value={link}
                                 onChange={(e) => setLink(e.target.value)}
                             />
@@ -97,7 +97,7 @@ export function CreateLinkDialog({ tripId }: CreateLinkDialogProps) {
                     <Button
                         onClick={handleCreateLink}
                         disabled={loading || !title || !link}
-                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-300 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-lime-300/10"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
                     >
                         {loading ? (
                             <>

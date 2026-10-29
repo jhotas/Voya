@@ -49,13 +49,13 @@ export default async function TripDetails({ params }: { params: { id: string } }
             {/* Cabeçalho superior (Barra horizontal) */}
             <header className="px-4 sm:px-8 py-4 sm:h-16 rounded-xl bg-zinc-800/50 border border-zinc-700/50 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-2">
-                    <MapPin className="text-lime-300" size={20} />
+                    <MapPin className="text-main" size={20} />
                     <span className="text-white font-medium">{trip.destination}</span>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 w-full sm:w-auto">
                     <div className="flex items-center gap-2">
-                        <Calendar className="text-lime-300" size={20} />
+                        <Calendar className="text-main" size={20} />
                         <span className="text-zinc-200">
                             {trip.starts_at ? new Date(trip.starts_at).toLocaleDateString() : "Data a definir"}
                         </span>

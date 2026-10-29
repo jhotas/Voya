@@ -20,14 +20,14 @@ export default async function Home() {
 
       <div className="flex-1 flex flex-col items-center justify-center p-6 sm:p-12 relative z-10 text-center max-w-5xl mx-auto w-full">
 
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-950 border border-lime-800 text-lime-300 text-sm font-medium mb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-950 border border-lime-800 text-main text-sm font-medium mb-8">
           <Globe2 size={16} />
           <span>Sua próxima aventura começa aqui</span>
         </div>
 
         <h1 className="text-5xl sm:text-7xl font-bold tracking-tight text-white mb-6">
           Planeje suas viagens <br className="hidden sm:block" />
-          <span className="text-lime-300">com quem você ama</span>
+          <span className="text-main">com quem você ama</span>
         </h1>
 
         <p className="text-lg sm:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
@@ -42,7 +42,7 @@ export default async function Home() {
           }}
           className="w-full sm:w-auto"
         >
-          <button className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-lime-300 text-lime-950 px-8 py-4 rounded-xl font-bold text-lg hover:bg-lime-400 transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(190,242,100,0.4)]">
+          <button className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-3 bg-main text-lime-950 px-8 py-4 rounded-xl font-bold text-lg hover:bg-lime-400 transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(190,242,100,0.4)]">
             Começar a planejar agora
             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
           </button>
@@ -51,7 +51,7 @@ export default async function Home() {
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-4xl text-left border-t border-zinc-800/50 pt-16">
           <div className="flex gap-4 items-start">
             <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
-              <Map className="text-lime-300" size={24} />
+              <Map className="text-main" size={24} />
             </div>
             <div>
               <h3 className="text-white font-semibold mb-2">Roteiros Inteligentes</h3>
@@ -61,7 +61,7 @@ export default async function Home() {
 
           <div className="flex gap-4 items-start">
             <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
-              <Users className="text-lime-300" size={24} />
+              <Users className="text-main" size={24} />
             </div>
             <div>
               <h3 className="text-white font-semibold mb-2">Colaborativo</h3>
@@ -71,7 +71,7 @@ export default async function Home() {
 
           <div className="flex gap-4 items-start">
             <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center shrink-0">
-              <PlaneTakeoff className="text-lime-300" size={24} />
+              <PlaneTakeoff className="text-main" size={24} />
             </div>
             <div>
               <h3 className="text-white font-semibold mb-2">Qualquer Destino</h3>

@@ -68,7 +68,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="gap-2 bg-lime-300 hover:bg-lime-400 text-lime-950 cursor-pointer transition-colors">
+                <Button className="gap-2 bg-main hover:bg-lime-400 text-lime-950 cursor-pointer transition-colors">
                     <Plus size={18} /> Nova Viagem
                 </Button>
             </DialogTrigger>
@@ -86,7 +86,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                         <Input
                             id="name"
                             placeholder="Nome da viagem (ex: Férias de Verão)"
-                            className="bg-zinc-800 border-none h-12 focus-visible:ring-lime-300 transition-all"
+                            className="bg-zinc-800 border-none h-12 focus-visible:ring-main transition-all"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -98,7 +98,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                             <Input
                                 id="destination"
                                 placeholder="Para onde vamos?"
-                                className="bg-zinc-800 border-none h-12 pl-10 scheme-dark focus-visible:ring-lime-300 transition-all"
+                                className="bg-zinc-800 border-none h-12 pl-10 scheme-dark focus-visible:ring-main transition-all"
                                 value={destination}
                                 onChange={(e) => setDestination(e.target.value)}
                             />
@@ -129,7 +129,7 @@ export function CreateTripDialog({ userId }: CreateTripDialogProps) {
                     <Button
                         onClick={handleCreateTrip}
                         disabled={loading || !name || !destination || !startsAt || !endsAt}
-                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-300 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-lime-300/10"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
                     >
                         {loading ? (
                             <>

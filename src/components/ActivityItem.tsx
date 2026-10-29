@@ -82,7 +82,7 @@ export function ActivityItem({ activity }: ActivityItemProps) {
                             {loading ? (
                                 <Loader2 className="animate-spin text-zinc-500" size={20} />
                             ) : isDone ? (
-                                <CircleCheck className="text-lime-300" size={20} />
+                                <CircleCheck className="text-main" size={20} />
                             ) : (
                                 <Circle className="text-zinc-500" size={20} />
                             )}

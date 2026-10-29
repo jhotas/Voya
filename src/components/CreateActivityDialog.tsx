@@ -61,7 +61,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button className="gap-2 bg-lime-300 hover:bg-lime-400 text-lime-950 font-medium cursor-pointer transition-colors">
+                <Button className="gap-2 bg-main hover:bg-lime-400 text-lime-950 font-medium cursor-pointer transition-colors">
                     <Plus size={20} />
                     Cadastrar atividade
                 </Button>
@@ -81,7 +81,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
                             <Tag className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" size={18} />
                             <Input
                                 placeholder="Qual a atividade?"
-                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-lime-300 transition-all"
+                                className="bg-zinc-800 border-none h-12 pl-10 focus-visible:ring-main transition-all"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                             />
@@ -98,7 +98,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
                             <Clock className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" size={18} />
                             <Input
                                 type="time"
-                                className="bg-zinc-800 border-none h-12 pl-10 scheme-dark focus-visible:ring-lime-300 transition-all font-mono"
+                                className="bg-zinc-800 border-none h-12 pl-10 scheme-dark focus-visible:ring-main transition-all font-mono"
                                 value={time}
                                 onChange={(e) => setTime(e.target.value)}
                             />
@@ -110,7 +110,7 @@ export function CreateActivityDialog({ tripId }: CreateActivityDialogProps) {
                     <Button
                         onClick={handleCreateActivity}
                         disabled={loading || !title || !date || !time}
-                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-lime-300 text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-lime-300/10"
+                        className="w-full h-12 disabled:bg-zinc-800 disabled:text-zinc-500 bg-main text-lime-950 hover:bg-lime-400 cursor-pointer font-bold text-lg transition-all shadow-lg shadow-main/10"
                     >
                         {loading ? (
                             <>
