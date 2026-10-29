@@ -5,16 +5,16 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 
 export default async function TripsPage() {
-  // const session = await auth()
+   const session = await auth()
 
-  // if (!session?.user) {
-  //   redirect("/")
-  // }
+   if (!session?.user) {
+     redirect("/")
+   }
 
   const { data: trips, error } = await supabase
     .from('trips')
     .select('*')
-    // .eq('user_id', session.user.id)
+     .eq('user_id', session.user.id)
     .order('created_at', { ascending: false })
 
   if (error) {
@@ -30,7 +30,7 @@ export default async function TripsPage() {
             <p className="text-zinc-400 mt-1">Organize seus próximos destinos com seus amigos.</p>
           </div>
 
-          {/* <CreateTripDialog userId={session.user.id} /> */}
+          <CreateTripDialog userId={session.user.id} />
         </header>
 
         {trips && trips.length > 0 ? (
@@ -53,7 +53,7 @@ export default async function TripsPage() {
                 <h3 className="text-xl font-semibold text-white mb-2">Nenhuma viagem planejada</h3>
                 <p className="text-zinc-400 max-w-sm mx-auto mb-6">Você ainda não tem nenhuma viagem planejada. Que tal criar a sua primeira aventura?</p>
                 <div className="flex justify-center">
-                  {/* <CreateTripDialog userId={session.user.id} /> */}
+                  <CreateTripDialog userId={session.user.id} />
                 </div>
             </div>
         )}
